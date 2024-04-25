@@ -1,0 +1,16 @@
+server:
+ port: 8071
+spring:
+ application:
+  name: service-user
+ profiles:
+  active: db
+#mybatis 配置自动建表，系统会自动判断哪些表是新建的，哪些字段要修改类型等，哪些字段要删除，哪些字段要新增，该操作不会破坏原有数据。
+mybatis:
+ table:
+     auto: update
+ model:
+   pack: cn.edu.neusoft.model
+ database: mysql
+ mybatis-plus:
+  mapper-locations: classpath:/mapper/*mapper.xml

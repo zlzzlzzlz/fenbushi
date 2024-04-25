@@ -1,0 +1,32 @@
+server:
+  port: 8091
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411/ #zipkin server的请求地址
+    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+  sleuth:
+    sampler:
+      probability: 1.0 #采样的百分比
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    #        <!-- 配置 Sentinel 依赖 --
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+  application:
+    name: service-order
+  profiles:
+    active: db
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*mapper.xml
+feign:
+  sentinel:
+    enabled: true
+  #RocketMQ
+
+  rocketmq:
+   name-server: 192.168.56.101:9876   #rocketMQ服务地址
+   producer:
+    group: shop-order  #生产者组名
